@@ -27,35 +27,35 @@
  * $Date:: 2008-10-20 19:51:02 -0#$:  Date of last commit
  * $Log$:
  * 
- * This class represents an exception if an invalid stock symbol is entered.
+ * This class indicates that there is a website connection error.
  * 
  */
 
 
-public class InvalidStockSymbolException extends Exception {
+package exceptions;
+
+public class WebsiteConnectionError extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public InvalidStockSymbolException() {
+	public WebsiteConnectionError() {
 		super();
 	}
 
-	public InvalidStockSymbolException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-
+	public WebsiteConnectionError(String message, Throwable cause) {
+		super(message, cause);
 	}
 
-	public InvalidStockSymbolException(String arg0) {
-		super(arg0);
-
+	public WebsiteConnectionError(String message) {
+		super(message);
 	}
 
-	public InvalidStockSymbolException(Throwable arg0) {
-		super(arg0);
-
+	public WebsiteConnectionError(Throwable cause) {
+		super(cause);
 	}
 
+	
 }

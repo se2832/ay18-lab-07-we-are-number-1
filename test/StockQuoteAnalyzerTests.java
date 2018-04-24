@@ -1,3 +1,7 @@
+import exceptions.InvalidAnalysisState;
+import exceptions.InvalidStockSymbolException;
+import exceptions.StockTickerConnectionError;
+
 import org.testng.annotations.Test;
 
 import org.testng.annotations.BeforeMethod;
@@ -187,7 +191,7 @@ public class StockQuoteAnalyzerTests {
 	}
 
 	@Test(dataProvider = "normalOperationDataProvider")
-	public void testgetPercentChangeSinceLastClosedShouldReturnCorrectPercentChangedWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
+	public void testGetPercentChangeSinceLastClosedShouldReturnCorrectPercentChangedWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
 			double percentChange) throws Exception {
 
 	    // Arrange

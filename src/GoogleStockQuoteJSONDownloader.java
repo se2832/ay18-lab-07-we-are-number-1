@@ -39,6 +39,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import edu.msoe.se2832.lab7.exceptions.WebsiteConnectionError;
+
 public class GoogleStockQuoteJSONDownloader implements
 		StockQuoteGeneratorInterface {
 	/**

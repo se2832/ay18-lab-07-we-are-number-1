@@ -32,6 +32,8 @@
  */
 
 
+package exceptions;
+
 public class InvalidAnalysisState extends Exception {
 
 	/**

@@ -27,36 +27,37 @@
  * $Date:: 2008-10-20 19:51:02 -0#$:  Date of last commit
  * $Log$:
  * 
- * This class indicates there is an error connecting with the stock ticker website.
+ * This class represents an exception if an invalid stock symbol is entered.
  * 
  */
 
 
-public class StockTickerConnectionError extends Exception  {
+package exceptions;
+
+public class InvalidStockSymbolException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public StockTickerConnectionError() {
+	public InvalidStockSymbolException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public StockTickerConnectionError(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
+	public InvalidStockSymbolException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+
 	}
 
-	public StockTickerConnectionError(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
+	public InvalidStockSymbolException(String arg0) {
+		super(arg0);
+
 	}
 
-	public StockTickerConnectionError(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
+	public InvalidStockSymbolException(Throwable arg0) {
+		super(arg0);
+
 	}
 
 }

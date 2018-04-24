@@ -27,33 +27,38 @@
  * $Date:: 2008-10-20 19:51:02 -0#$:  Date of last commit
  * $Log$:
  * 
- * This class indicates that there is a website connection error.
+ * This class indicates there is an error connecting with the stock ticker website.
  * 
  */
 
 
-public class WebsiteConnectionError extends Exception {
+package exceptions;
+
+public class StockTickerConnectionError extends Exception  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public WebsiteConnectionError() {
+	public StockTickerConnectionError() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public WebsiteConnectionError(String message, Throwable cause) {
+	public StockTickerConnectionError(String message, Throwable cause) {
 		super(message, cause);
+		// TODO Auto-generated constructor stub
 	}
 
-	public WebsiteConnectionError(String message) {
+	public StockTickerConnectionError(String message) {
 		super(message);
+		// TODO Auto-generated constructor stub
 	}
 
-	public WebsiteConnectionError(Throwable cause) {
+	public StockTickerConnectionError(Throwable cause) {
 		super(cause);
+		// TODO Auto-generated constructor stub
 	}
 
-	
 }

@@ -31,6 +31,7 @@
  * 
  */
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -38,6 +39,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import edu.msoe.se2832.lab7.exceptions.WebsiteConnectionError;
 
 public class YahooStockQuoteHTMLQuoteExtractor implements StockQuoteGeneratorInterface {
 	/**

@@ -1,3 +1,4 @@
+
 /**
  * This interface will return pertinent information about a given stock quote.
  * 

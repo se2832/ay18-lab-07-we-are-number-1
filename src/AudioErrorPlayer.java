@@ -161,7 +161,7 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 	 * @see edu.msoe.se2831.lab6.StockTickerAudioInterface#playErrorMusic()
 	 */
 	public void playErrorMusic() {
-		WavePlayer wp = new WavePlayer("apollo-failureisnotanoption.wav");
+		WavePlayer wp = new WavePlayer("res/apollo-failureisnotanoption.wav");
 		new Thread(wp).start();
 	}
 
@@ -171,7 +171,7 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 	 * @see edu.msoe.se2831.lab6.StockTickerAudioInterface#playHappyMusic()
 	 */
 	public void playHappyMusic() {
-		WavePlayer wp = new WavePlayer("money.wav");
+		WavePlayer wp = new WavePlayer("res/money.wav");
 		new Thread(wp).start();
 	}
 
@@ -181,7 +181,7 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 	 * @see edu.msoe.se2831.lab6.StockTickerAudioInterface#playSadMusic()
 	 */
 	public void playSadMusic() {
-		WavePlayer wp = new WavePlayer("GRR.WAV");
+		WavePlayer wp = new WavePlayer("res/GRR.WAV");
 		new Thread(wp).start();
 
 	}

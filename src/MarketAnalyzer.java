@@ -37,8 +37,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import edu.msoe.se2832.lab7.exceptions.InvalidAnalysisState;
-import edu.msoe.se2832.lab7.exceptions.StockTickerConnectionError;
+import exceptions.InvalidAnalysisState;
+import exceptions.StockTickerConnectionError;
 
 /**
  * @author schilling

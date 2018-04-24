@@ -33,9 +33,9 @@
  */
 
 
-import edu.msoe.se2832.lab7.exceptions.InvalidAnalysisState;
-import edu.msoe.se2832.lab7.exceptions.InvalidStockSymbolException;
-import edu.msoe.se2832.lab7.exceptions.StockTickerConnectionError;
+import exceptions.InvalidAnalysisState;
+import exceptions.InvalidStockSymbolException;
+import exceptions.StockTickerConnectionError;
 
 /**
  * @author schilling

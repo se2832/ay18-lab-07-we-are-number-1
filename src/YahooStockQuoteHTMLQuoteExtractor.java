@@ -40,7 +40,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import edu.msoe.se2832.lab7.exceptions.WebsiteConnectionError;
+import exceptions.WebsiteConnectionError;
 
 public class YahooStockQuoteHTMLQuoteExtractor implements StockQuoteGeneratorInterface {
 	/**

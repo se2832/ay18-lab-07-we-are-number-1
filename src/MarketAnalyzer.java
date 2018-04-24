@@ -40,7 +40,7 @@ import exceptions.InvalidAnalysisState;
 import exceptions.StockTickerConnectionError;
 
 /**
- * @author schilling 
+ * @author schilling
  * 
  */
 public class MarketAnalyzer implements Runnable {

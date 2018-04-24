@@ -225,7 +225,7 @@ public class StockQuoteAnalyzerTests {
 
 	    // Arrange
 		when(mockedStockQuoteGenerator.getCurrentQuote()).thenReturn(firstReturn, secondReturn);
-		analyzer = new StockQuoteAnalyzer("F", mockedStockQuoteGenerator, mockedStockTickerAudio);
+ 		analyzer = new StockQuoteAnalyzer("F", mockedStockQuoteGenerator, mockedStockTickerAudio);
 
         // Act
 		analyzer.refresh();

@@ -31,7 +31,6 @@
  * 
  */
 
-
 /**
  * @author schilling
  * 
@@ -45,19 +44,19 @@ public class StockQuote implements StockQuoteInterface {
 	/**
 	 * @param symbol
 	 *            The symbol for the quote.
-	 * @param previousClose
-	 *            This is the closing value of the stock from yesterday.
+	 * @param previousOpen
+	 *            This is the opening value of the stock from yesterday.
 	 * @param lastTrade
 	 *            The last trading value.
 	 * @param change
 	 *            This is the change in value for the given stock since the
 	 *            previous close.
 	 */
-	public StockQuote(String symbol, double previousClose, double lastTrade,  double change) {
+	public StockQuote(String symbol, double previousOpen, double lastTrade,  double change) {
 		super();
 		this.symbol = symbol;
 		this.lastTrade = lastTrade;
-		this.previousClose = previousClose;
+		this.previousClose = previousOpen;
 		this.change = change;
 	}
 
@@ -84,7 +83,7 @@ public class StockQuote implements StockQuoteInterface {
 	 * 
 	 * @see edu.msoe.se2831.lab6.StockQuoteInterface#getClose()
 	 */
-	public double getClose() {
+	public double getOpen() {
 		return previousClose;
 	}
 

@@ -31,7 +31,6 @@
  * 
  */
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.locks.Lock;
@@ -98,8 +97,10 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 				return;
 			}
 
+			// Lock the mutex so that only a single sound can be played at once.
 			mutex.lock();
 
+			// Open up the audio stream from the given file.
 			AudioInputStream audioInputStream = null;
 			try {
 				audioInputStream = AudioSystem.getAudioInputStream(soundFile);
@@ -111,6 +112,7 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 				return;
 			}
 
+			
 			AudioFormat format = audioInputStream.getFormat();
 			SourceDataLine auline = null;
 			DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -148,6 +150,7 @@ public class AudioErrorPlayer implements StockTickerAudioInterface {
 				e.printStackTrace();
 				return;
 			} finally {
+				// Drain any aspects of the audio buffer before closing.
 				auline.drain();
 				auline.close();
 			}

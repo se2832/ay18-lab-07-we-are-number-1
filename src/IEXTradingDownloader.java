@@ -39,10 +39,12 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import exceptions.WebsiteConnectionError;
 
-public class GoogleStockQuoteJSONDownloader implements
-		StockQuoteGeneratorInterface {
+public class IEXTradingDownloader implements StockQuoteGeneratorInterface {
 	/**
 	 * This is the stock symbol to be obtained.
 	 */
@@ -54,35 +56,32 @@ public class GoogleStockQuoteJSONDownloader implements
 	 * @see msoe.StockQuoteGeneratorInterface#getCurrentQuote()
 	 */
 	public StockQuoteInterface getCurrentQuote() throws Exception {
-		String quoteURL = "http://www.google.com/finance/info?q=NSE:"
-				+ this.symbol + "";
+		JSONParser parser = new JSONParser();
+		String quoteURL = "https://api.iextrading.com/1.0/stock/" + this.symbol.trim().toLowerCase() + "/quote";
 		StockQuoteInterface retVal = null;
 
 		try {
 			URL url = new URL(quoteURL);
 
 			InputStream inputStream = url.openStream();
-			BufferedReader bufferedReader = new BufferedReader(
-					new InputStreamReader(inputStream));
-			String text = "";
-			String line = bufferedReader.readLine();
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-			while (line != null) {
-				text += line + "\n";
-				line = bufferedReader.readLine();
-			}
-			bufferedReader.close();
+			Object obj = parser.parse(bufferedReader);
 
-			retVal = new GoogleJSONStockQuote(text);
+			JSONObject jsonObject = (JSONObject) obj;
+
+			String symbol = (String) jsonObject.get("symbol");
+			Double open = (Double) jsonObject.get("open");
+			Double lastTrade = (Double) jsonObject.get("latestPrice");
+
+			retVal = new StockQuote(symbol, open.doubleValue(), lastTrade.doubleValue(),
+					lastTrade.doubleValue() - open.doubleValue());
 		} catch (FileNotFoundException ex) {
-			throw new WebsiteConnectionError("Unable to connect with "
-					+ quoteURL);
+			throw new WebsiteConnectionError("Unable to connect with " + quoteURL);
 		} catch (MalformedURLException e) {
-			throw new WebsiteConnectionError("Unable to connect with "
-					+ quoteURL);
+			throw new WebsiteConnectionError("Unable to connect with " + quoteURL);
 		} catch (IOException e) {
-			throw new WebsiteConnectionError("Unable to connect with "
-					+ quoteURL);
+			throw new WebsiteConnectionError("Unable to connect with " + quoteURL);
 		}
 
 		return retVal;
@@ -92,7 +91,7 @@ public class GoogleStockQuoteJSONDownloader implements
 	 * @param symbol
 	 *            This is the symbol to watch.
 	 */
-	public GoogleStockQuoteJSONDownloader(String symbol) {
+	public IEXTradingDownloader(String symbol) {
 		super();
 		this.symbol = symbol;
 	}
@@ -100,7 +99,7 @@ public class GoogleStockQuoteJSONDownloader implements
 	/**
 	 * Default constructor.
 	 */
-	public GoogleStockQuoteJSONDownloader() {
+	public IEXTradingDownloader() {
 		super();
 		this.symbol = null;
 	}
@@ -113,7 +112,7 @@ public class GoogleStockQuoteJSONDownloader implements
 	 * .lang.String)
 	 */
 	public StockQuoteGeneratorInterface createNewInstance(String symbol) {
-		return new GoogleStockQuoteJSONDownloader(symbol);
+		return new IEXTradingDownloader(symbol);
 	}
 
 	/**

@@ -31,7 +31,6 @@
  * 
  */
 
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,7 +52,7 @@ public class MarketAnalyzer implements Runnable {
 	private int refreshRate = 60;
 
 	/**
-	 * This is the number of times that the loop is to execute, queriying for
+	 * This is the number of times that the loop is to execute, querying for
 	 * data. It allows the user to set the number of thread executions to a
 	 * given count. -1 indicates it should run until the thread is killed.
 	 */
@@ -128,7 +127,7 @@ public class MarketAnalyzer implements Runnable {
 		out.println(
 				"##############################################################################################################################################################");
 		out.printf("%48s", "Stock Name and Symbol ");
-		out.printf("\t%10s", "Prev. Close ");
+		out.printf("\t%10s", "Open ");
 		out.printf("\t%10s", "Cur. Price ");
 		out.printf("\t%10s", "Change ");
 		out.printf("\t%10s", "% Change ");
@@ -144,10 +143,10 @@ public class MarketAnalyzer implements Runnable {
 
 				out.printf("%40s", stockName);
 				out.printf(" (%5s) ", symbol);
-				out.printf("\t  $%7.2f", instance.getPreviousClose());
+				out.printf("\t  $%7.2f", instance.getPreviousOpen());
 				out.printf("\t  $%7.2f", instance.getCurrentPrice());
-				out.printf("\t  $%7.2f", instance.getChangeSinceClose());
-				out.printf("\t  %7.2f%%", instance.getPercentChangeSinceClose());
+				out.printf("\t  $%7.2f", instance.getChangeSinceOpen());
+				out.printf("\t  %7.2f%%", instance.getPercentChangeSinceOpen());
 
 				if (firstTime == false) {
 					out.printf("\t  $%7.2f", instance.getChangeSinceLastCheck());
@@ -277,8 +276,7 @@ public class MarketAnalyzer implements Runnable {
 				truncArgs[index - 1] = args[index];
 			}
 
-			MarketAnalyzer ma = new MarketAnalyzer(truncArgs, new GoogleStockQuoteJSONDownloader(),
-					new AudioErrorPlayer());
+			MarketAnalyzer ma = new MarketAnalyzer(truncArgs, new IEXTradingDownloader(), new AudioErrorPlayer());
 			ma.setRefreshRate(refreshRate);
 			new Thread(ma).start();
 		}

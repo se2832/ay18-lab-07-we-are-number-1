@@ -1,4 +1,3 @@
-
 /**
  * This interface will return pertinent information about a given stock quote.
  * 
@@ -22,15 +21,15 @@ public interface StockQuoteInterface {
 	public abstract double getLastTrade();
 
 	/**
-	 * This will return the previous close for the stock.
+	 * This will return the previous open for the stock.
 	 * 
 	 * @return the close
 	 */
-	public abstract double getClose();
+	public abstract double getOpen();
 
 	/**
 	 * This will return the changed value for the given stock versus the
-	 * previous close.
+	 * previous open.
 	 * 
 	 * @return The return will be the absolute change in dollars for the given
 	 *         stock.

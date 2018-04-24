@@ -31,7 +31,6 @@
  * 
  */
 
-
 public interface StockTickerAudioInterface {
 
 	/**
@@ -48,5 +47,4 @@ public interface StockTickerAudioInterface {
 	 * Play an error song indicating something is wrong.
 	 */
 	public abstract void playErrorMusic();
-
 }

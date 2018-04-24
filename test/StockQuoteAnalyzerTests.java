@@ -1,7 +1,6 @@
 import exceptions.InvalidAnalysisState;
 import exceptions.InvalidStockSymbolException;
 import exceptions.StockTickerConnectionError;
-
 import org.testng.annotations.Test;
 
 import org.testng.annotations.BeforeMethod;
@@ -73,13 +72,13 @@ public class StockQuoteAnalyzerTests {
 	}
 	
 	@Test(expectedExceptions = InvalidAnalysisState.class)
-	public void testShouldThrowExceptionWhenGetPreviousCloseInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
+	public void testShouldThrowExceptionWhenGetPreviousOpenInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
 	{
         //Arrange
         analyzer = new StockQuoteAnalyzer("F", mockedStockQuoteGenerator, mockedStockTickerAudio);
 
         //Act
-		analyzer.getPreviousClose();
+		analyzer.getPreviousOpen();
 
 		//Assert
 	}
@@ -97,25 +96,25 @@ public class StockQuoteAnalyzerTests {
 	}
 	
 	@Test(expectedExceptions = InvalidAnalysisState.class)
-	public void testShouldThrowExceptionWhenGetChangeSinceCloseInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
+	public void testShouldThrowExceptionWhenGetChangeSinceOpenInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
 	{
         //Arrange
 		analyzer = new StockQuoteAnalyzer("F", mockedStockQuoteGenerator, mockedStockTickerAudio);
 
         //Act
-		analyzer.getChangeSinceClose();
+		analyzer.getChangeSinceOpen();
 
 		//Assert
 	}
 	
 	@Test(expectedExceptions = InvalidAnalysisState.class)
-	public void testShouldThrowExceptionWhenGetPercentChangeSinceCloseInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
+	public void testShouldThrowExceptionWhenGetPercentChangeSinceOpenInvalidAnalysisState() throws InvalidAnalysisState, NullPointerException, InvalidStockSymbolException, StockTickerConnectionError
 	{
         //Arrange
 		analyzer = new StockQuoteAnalyzer("F", mockedStockQuoteGenerator, mockedStockTickerAudio);
 
 		//Act
-		analyzer.getPercentChangeSinceClose();
+		analyzer.getPercentChangeSinceOpen();
 
 		//Assert
 	}
@@ -191,7 +190,7 @@ public class StockQuoteAnalyzerTests {
 	}
 
 	@Test(dataProvider = "normalOperationDataProvider")
-	public void testGetPercentChangeSinceLastClosedShouldReturnCorrectPercentChangedWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
+	public void testGetPercentChangeSinceLastOpenShouldReturnCorrectPercentChangedWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
 			double percentChange) throws Exception {
 
 	    // Arrange
@@ -216,7 +215,7 @@ public class StockQuoteAnalyzerTests {
 		verify(mockedStockTickerAudio, times(sadMusicCount)).playSadMusic();
 
 		// Now check that the change calculation was correct.
-		Assert.assertEquals(analyzer.getPercentChangeSinceClose(), percentChange, 0.01);
+		Assert.assertEquals(analyzer.getPercentChangeSinceOpen(), percentChange, 0.01);
 	}
 	
 	
@@ -237,7 +236,7 @@ public class StockQuoteAnalyzerTests {
 	}
 	
 	@Test(dataProvider = "normalOperationDataProvider")
-	public void testGetChangeSinceCloseShouldReturnCorrectChangeWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
+	public void testGetChangeSinceOpenShouldReturnCorrectChangeWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
 			double percentChange) throws Exception {
 		// Arrange - Setup the expected calls.
 		when(mockedStockQuoteGenerator.getCurrentQuote()).thenReturn(firstReturn);
@@ -247,7 +246,7 @@ public class StockQuoteAnalyzerTests {
 		analyzer.refresh();
 
 		// Assert - Now check that the change calculation was correct.
-        Assert.assertEquals(analyzer.getChangeSinceClose(), firstReturn.getChange(), 0.01);
+        Assert.assertEquals(analyzer.getChangeSinceOpen(), firstReturn.getChange(), 0.01);
 	}
 	
 	@Test(dataProvider = "normalOperationDataProvider")
@@ -265,7 +264,7 @@ public class StockQuoteAnalyzerTests {
 	}
 	
 	@Test(dataProvider = "normalOperationDataProvider")
-	public void testGetPreviousCloseShouldReturnCorrectDataWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
+	public void testGetPreviousOpenShouldReturnCorrectDataWhenCalled(StockQuote firstReturn, StockQuote secondReturn, int happyMusicCount, int sadMusicCount,
 			double percentChange) throws Exception {
 
 	    // Assert
@@ -276,7 +275,7 @@ public class StockQuoteAnalyzerTests {
 		analyzer.refresh();
 
 		// Assert
-        Assert.assertEquals(analyzer.getPreviousClose(), firstReturn.getClose(), 0.01);
+        Assert.assertEquals(analyzer.getPreviousOpen(), firstReturn.getOpen(), 0.01);
 	}
 
 	

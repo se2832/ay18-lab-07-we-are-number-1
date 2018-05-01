@@ -91,7 +91,7 @@ public class StockQuoteAnalyzer {
 		if (StockTickerListing.getSingleton().isValidTickerSymbol(symbol) != true) {
 			this.symbol = symbol;
 		} else {
-			throw new StockTickerConnectionError("Symbol " + symbol + "not found.");
+			throw new InvalidStockSymbolException("Symbol " + symbol + "not found.");		//Issue #1
 		}
 		if (stockQuoteSource == null) {
 			throw new InvalidStockSymbolException("The source for stock quotes can not be null");

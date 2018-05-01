@@ -94,7 +94,7 @@ public class StockQuoteAnalyzer {
 			throw new InvalidStockSymbolException("Symbol " + symbol + "not found.");		//Issue #1
 		}
 		if (stockQuoteSource == null) {
-			throw new InvalidStockSymbolException("The source for stock quotes can not be null");
+			throw new NullPointerException("The source for stock quotes can not be null");       //Issue #2
 		}
 		this.stockQuoteSource = stockQuoteSource;
 		this.audioPlayer = audioPlayer;

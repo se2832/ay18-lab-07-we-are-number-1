@@ -113,7 +113,7 @@ public class StockQuoteAnalyzer {
 			StockQuoteInterface temp = this.stockQuoteSource.getCurrentQuote();
 
 			this.previousQuote = currentQuote;
-			this.currentQuote = this.previousQuote;
+			this.currentQuote = temp;           //Issue #5
 		} catch (Exception e) {
 			throw new StockTickerConnectionError("Unable to connect with Stock Ticker Source.");
 		}

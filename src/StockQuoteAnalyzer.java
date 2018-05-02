@@ -88,7 +88,7 @@ public class StockQuoteAnalyzer {
 		super();
 
 		// Check the validity of the symbol.
-		if (StockTickerListing.getSingleton().isValidTickerSymbol(symbol) != true) {
+		if (StockTickerListing.getSingleton().isValidTickerSymbol(symbol) == true) {      //Issue #3
 			this.symbol = symbol;
 		} else {
 			throw new InvalidStockSymbolException("Symbol " + symbol + "not found.");		//Issue #1

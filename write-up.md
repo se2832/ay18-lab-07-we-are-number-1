@@ -14,26 +14,26 @@
 ##Boundary Value Analysis
 | Test Number | Method Name | MCC | Test Case Values | Expected Results |
 | --- | --- | --- | --- | --- |
-| BA-01 | constructor | 3 | | |
-| BA-02 | | | | |
-| BA-03 | | | | |
-| BA-04 | refresh | 2 | | |
-| BA-05 | | | | |
-| BA-06 | playAppropriateAudio | 5 | | |
-| BA-07 | | | | |
-| BA-08 | | | | |
-| BA-09 | | | | |
-| BA-10 | | | | |
-| BA-11 | getSymbol | 1 | | |
-| BA-12 | getPreviousOpen | 2 | | |
-| BA-13 | | | | |
-| BA-14 | getCurrentPrice | 2 | | |
-| BA-15 | | | | |
-| BA-16 | getChangeSinceOpen | 2 | | |
-| BA-17 | | | | |
-| BA-18 | getPercentChangeSinceOpen | 2 | | |
-| BA-19 | | | | |
-| BA-20 | getChangeSinceLastCheck | 3 | | |
-| BA-21 | | | | |
-| BA-22 | | | | |
-| BA-23 | getCurrentQuote | 1 |  | |
+| BA-01 | constructor | 3 | symbol = null, StockQuoteGeneratorInterface = mock(StockQuoteGeneratorInterface.class), StockTickerAudioInterface = mock(StockTickerAudioInterface.class) | throws InvalidStockSymbolException |
+| BA-02 | | | symbol = "F", StockQuoteGeneratorInterface = null, StockTickerAudioInterface = mock(StockTickerAudioInterface.class) | throws NullPointerException |
+| BA-03 | | | symbol = "F", StockQuoteGeneratorInterface = mock(StockQuoteGeneratorInterface.class), StockTickerAudioInterface = mock(StockTickerAudioInterface.class) | a new StockQuoteAnalyzer is created |
+| BA-04 | refresh | 2 | StockQuoteGeneratorInterface = an unavailable source, currentQuote = null, previousQuote = null | throws StockTickerConnectionError |
+| BA-05 | | | StockQuoteGeneratorInterface = mock(StockQuoteGeneratorInterface.class), currentQuote = null, previousQuote = null | previousQuote is set to currentQuote and currentQuote is updated |
+| BA-06 | playAppropriateAudio | 5 | audioPlayer = null, getPercentChangeSinceOpen = 0.0, getChangeSinceLastCheck = 0.0 | all code in method is skipped over |
+| BA-07 | | | audioPlayer = invalid state, getPercentChangeSinceOpen = 0.0, getChangeSinceLastCheck = 0.0 | error tone is played |
+| BA-08 | | | audioPlayer = mock(StockTickerAudioInterface.class), getPercentChangeSinceOpen = 2.0, getChangeSinceLastCheck = 2.0 | happy tone is played |
+| BA-09 | | | audioPlayer = mock(StockTickerAudioInterface.class), getPercentChangeSinceOpen = -1.0, getChangeSinceLastCheck = -2.0 | sad tone is played |
+| BA-10 | | | audioPlayer = mock(StockTickerAudioInterface.class), getPercentChangeSinceOpen = 0.0, getChangeSinceLastCheck = 0.0 | no tone is played |
+| BA-11 | getSymbol | 1 | StockQuoteAnalyzer constructor is passed "F" for symbol parameter and StockQuoteAnalyzer is created successfully | "F" is returned |
+| BA-12 | getPreviousOpen | 2 | currentQuote = null | throws InvalidAnalysisState |
+| BA-13 | | | currentQuote != null | returns currentQuote.getOpen() |
+| BA-14 | getCurrentPrice | 2 | currentQuote = null | throws InvalidAnalysisState |
+| BA-15 | | | currentQuote != null | returns currentQuote.getLastTrade() |
+| BA-16 | getChangeSinceOpen | 2 | currentQuote = null | throws InvalidAnalysisState |
+| BA-17 | | | currentQuote != null | returns currentQuote.getChange() |
+| BA-18 | getPercentChangeSinceOpen | 2 | currentQuote = null | throws InvalidAnalysisState |
+| BA-19 | | | currentQuote != null | percentage change is returned |
+| BA-20 | getChangeSinceLastCheck | 3 | currentQuote = null, previousQuote != null | throws InvalidAnalysisState |
+| BA-21 | | | currentQuote != null, previousQuote = null | throws InvalidAnalysisState |
+| BA-22 | | | currentQuote != null, previousQuote != null | returns currentQuote.getChange() |
+| BA-23 | getCurrentQuote | 1 | StockQuoteAnalyzer is created successfully and refresh() is called | the currentQuote is returned |
